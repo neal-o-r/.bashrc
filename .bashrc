@@ -24,3 +24,24 @@ ff() {
 
 # open today's lab book entry
 alias labbook='bash ~/labbook_core/lab_book.sh'
+# show markdown like a man page
+function mdless() {
+      pandoc -s -f markdown -t man $1 | groff -T utf8 -man | less
+}
+
+# open/create notes file for today
+notes() { mkdir -p ~/.notes; vim ~/.notes/`date +'%Y-%m-%d'`.md; }
+
+# see the notes - for today by default 
+notesview() { 
+  if [ $# -ge 1 ]
+  then
+     mdless ~/.notes/"$1".md
+  else
+     newest=`ls -1a ~/.notes/ | sort | tail -1`
+     mdless ~/.notes/$newest
+  fi 
+}
+
+# list the notes dir
+notesls() { ls ~/.notes }
