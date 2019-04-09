@@ -1,3 +1,3 @@
-# .bashrc
+# .merc
 
-Backing up my fairly minimal bash set up
+Run to install the tools that I use a lot.
